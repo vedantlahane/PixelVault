@@ -1,18 +1,25 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
+import Home from './pages/Home';
+import Gallery from './pages/Gallery';
+import PromptDetail from './pages/PromptDetail';
+import Submit from './pages/Submit';
+import About from './pages/About';
 
 function App() {
   return (
-    <Layout>
-      <div className="container py-8">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">
-          Welcome to PixelVault
-        </h1>
-        <p className="text-gray-600">
-          Discover and share amazing AI-generated artwork and their prompts.
-        </p>
-      </div>
-    </Layout>
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/prompt/:id" element={<PromptDetail />} />
+          <Route path="/submit" element={<Submit />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </Layout>
+    </Router>
   );
 }
 
