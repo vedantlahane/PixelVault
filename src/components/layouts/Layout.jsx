@@ -1,18 +1,16 @@
+// src/components/Layout.jsx
 import React from 'react';
 import Navbar from './Navbar';
+// import Footer from './Footer';
 
 const Layout = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow container mx-auto py-8">
         {children}
       </main>
-      <footer className="bg-white border-t py-4">
-        <div className="container text-center text-gray-600 text-sm">
-          © 2024 PixelVault. All rights reserved.
-        </div>
-      </footer>
+      {/* <Footer /> */}
     </div>
   );
 };

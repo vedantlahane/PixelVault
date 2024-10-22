@@ -1,13 +1,12 @@
+// src/components/Navbar.jsx
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Camera, Upload, Search } from 'lucide-react';
+import { Camera } from 'lucide-react';
 
 const Navbar = () => {
   const location = useLocation();
-  
-  const isActive = (path) => {
-    return location.pathname === path ? 'text-primary-600' : 'text-gray-600';
-  };
+
+  const isActive = (path) => (location.pathname === path ? 'text-primary-600' : 'text-gray-600');
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -21,28 +20,17 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link 
-              to="/gallery" 
-              className={`${isActive('/gallery')} hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium`}
-            >
+            <Link to="/gallery" className={`${isActive('/gallery')} hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium`}>
               Gallery
             </Link>
-            <Link 
-              to="/about" 
-              className={`${isActive('/about')} hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium`}
-            >
+            <Link to="/about" className={`${isActive('/about')} hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium`}>
               About
             </Link>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center space-x-4">
-            <Link 
-              to="/submit"
-              className="bg-primary-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-primary-700 flex items-center space-x-2"
-            >
-              <Upload className="h-4 w-4" />
-              <span>Submit</span>
+            <Link to="/competitions" className={`${isActive('/competitions')} hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium`}>
+              Competitions
+            </Link>
+            <Link to="/submit" className={`${isActive('/submit')} hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium`}>
+              Submit
             </Link>
           </div>
         </div>

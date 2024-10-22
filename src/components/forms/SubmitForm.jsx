@@ -1,21 +1,22 @@
+// src/components/forms/SubmitForm.jsx
 import React, { useState } from 'react';
 import { Upload, X, Image as ImageIcon } from 'lucide-react';
 
 const SubmitForm = () => {
   const [formData, setFormData] = useState({
     title: '',
-    prompt: '',
-    aiModel: '',
+    category: '',
     description: '',
     tags: ''
   });
   const [previewImage, setPreviewImage] = useState(null);
 
-  const aiModels = ['Midjourney', 'DALL-E', 'Stable Diffusion'];
+  // Categories for diverse forms of art
+  const artCategories = ['Photography', 'Painting', 'Digital Art', 'Mixed Media'];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value
     }));
@@ -39,7 +40,7 @@ const SubmitForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', { ...formData, image: previewImage });
-    // Add your submission logic here
+    // Add your submission logic here (e.g., send the data to an API or a database)
   };
 
   return (
@@ -101,40 +102,24 @@ const SubmitForm = () => {
         />
       </div>
 
-      {/* AI Model Selection */}
+      {/* Art Category Selection */}
       <div>
-        <label htmlFor="aiModel" className="block text-sm font-medium text-gray-700">
-          AI Model Used
+        <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+          Art Category
         </label>
         <select
-          id="aiModel"
-          name="aiModel"
-          value={formData.aiModel}
+          id="category"
+          name="category"
+          value={formData.category}
           onChange={handleInputChange}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
           required
         >
-          <option value="">Select AI Model</option>
-          {aiModels.map(model => (
-            <option key={model} value={model}>{model}</option>
+          <option value="">Select Art Category</option>
+          {artCategories.map((category) => (
+            <option key={category} value={category}>{category}</option>
           ))}
         </select>
-      </div>
-
-      {/* Prompt Input */}
-      <div>
-        <label htmlFor="prompt" className="block text-sm font-medium text-gray-700">
-          Prompt Used
-        </label>
-        <textarea
-          id="prompt"
-          name="prompt"
-          value={formData.prompt}
-          onChange={handleInputChange}
-          rows={4}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-          required
-        />
       </div>
 
       {/* Description Input */}
@@ -164,7 +149,7 @@ const SubmitForm = () => {
           value={formData.tags}
           onChange={handleInputChange}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500"
-          placeholder="e.g., cyberpunk, nature, abstract"
+          placeholder="e.g., nature, abstract, cityscape"
         />
       </div>
 
